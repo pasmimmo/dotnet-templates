@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Domenico Pascucci",
+  "classifications": [ "Azure", "Function", "Isolated" ],
+  "identity": "https://github.com/pasmimmo/dotnet-templates",
+  "name": "Azure Function .NET 8 Isolated Template",
+  "shortName": "pas-net8-is-azf",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "MyFunctionApp",
+  "preferNameDirectory": true
+}
