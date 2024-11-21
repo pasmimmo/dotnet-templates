@@ -1,0 +1,36 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore net-8-isolated-azure-function-template/content/MyFunctionApp.sln
+    - name: Build
+      run: dotnet build net-8-isolated-azure-function-template/content/MyFunctionApp.sln --no-restore
+    - name: Test
+      run: dotnet test net-8-isolated-azure-function-template/content/MyFunctionApp.sln --no-build --verbosity normal
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Pack NuGet package
+      run: dotnet pack net-8-isolated-azure-function-template --output ./nuget
+    - name: Publish NuGet package to GitHub Packages
+      run: dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.TOKEN }} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json

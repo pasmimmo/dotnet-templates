@@ -1,0 +1,38 @@
+# editorconfig.org
+root = true
+
+# General rules
+[*]
+indent_style = space
+indent_size = 2 # usually indent is 4 but i prefere 2
+end_of_line = crlf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# C# specific rules
+[*.cs]
+dotnet_sort_system_directives_first = true
+csharp_new_line_before_open_brace = all
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_after_cast = false
+
+# JSON specific rules
+[*.{json,json5}]
+indent_size = 2
+
+# YAML specific rules
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown specific rules
+[*.md]
+trim_trailing_whitespace = false
+
+# HTML, CSS, JavaScript, TypeScript, etc. specific rules
+[*.{htm,html,js,ts,tsx,css,sass,scss,less,svg,vue}]
+indent_size = 2
