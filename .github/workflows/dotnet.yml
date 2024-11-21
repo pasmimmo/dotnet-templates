@@ -44,6 +44,4 @@ jobs:
         name: nuget-package
         path: ./nuget
     - name: Publish NuGet package to GitHub Packages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      run: dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.TOKEN}} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
